@@ -1,10 +1,18 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Routes, RouterModule } from '@angular/router';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+
+
+const routes: Routes = [
+{path:'', redirectTo:'login',pathMatch:'full'},
+{path:'login',
+loadChildren:'./public-pages/public-page.module#PublicPageModule'},
+{path:'**',
+component:PagenotfoundComponent},
+];
 
 @NgModule({
-  imports: [
-    CommonModule
-  ],
-  declarations: []
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
 })
 export class AppRoutingModule { }
